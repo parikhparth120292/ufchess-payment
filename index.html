@@ -4,117 +4,166 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UFChess Payment</title>
+<title>UFChess - Registration Payment</title>
+
 <style>
 body {
   font-family: Arial, sans-serif;
   background: #f3f5f8;
+  color: #172033;
   text-align: center;
   padding: 30px 15px;
-  color: #172033;
+  margin: 0;
 }
+
 .card {
   background: white;
-  max-width: 400px;
-  margin: auto;
-  padding: 30px 20px;
+  max-width: 420px;
+  margin: 20px auto;
+  padding: 30px 22px;
   border-radius: 16px;
   box-shadow: 0 3px 15px #ddd;
 }
-h1 { color: #183153; }
+
+h1 {
+  color: #183153;
+  font-size: 30px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 16px;
+}
+
 .amount {
-  font-size: 42px;
+  font-size: 44px;
   font-weight: bold;
   color: #168447;
-  margin: 25px;
+  margin: 25px 0;
 }
+
 .details {
   background: #f1f3f5;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 25px;
+  padding: 22px 12px;
+  border-radius: 12px;
+  margin: 20px 0;
 }
+
 .upi {
-  font-size: 23px;
+  font-size: 25px;
   font-weight: bold;
-  margin: 15px 0;
   color: #183153;
+  margin: 15px 0;
+  word-break: break-word;
 }
-button {
+
+.copy {
   width: 100%;
   background: #168447;
   color: white;
-  padding: 17px;
+  padding: 16px;
   border: none;
   border-radius: 9px;
   font-size: 17px;
   font-weight: bold;
   cursor: pointer;
 }
+
 .instructions {
   text-align: left;
   line-height: 1.8;
   margin-top: 25px;
+  font-size: 14px;
 }
+
 .note {
   font-size: 13px;
   color: #666;
-  margin-top: 20px;
+  margin-top: 22px;
+  line-height: 1.6;
+}
+
+#status {
+  color: #168447;
+  font-size: 14px;
+  margin-top: 12px;
 }
 </style>
 </head>
 
 <body>
+
 <div class="card">
 
-<h1>♟ UFChess</h1>
-<h3>Chess Tournament Registration</h3>
+  <h1>♟ UFChess</h1>
 
-<div class="amount">₹199</div>
+  <p class="subtitle">
+    Chess Tournament Registration
+  </p>
 
-<div class="details">
-  <b>Pay using any UPI app</b>
-  <div class="upi">ucas@idfcbank</div>
+  <div class="amount">₹199</div>
 
-  <button onclick="copyUPI()">
-    COPY UPI ID
-  </button>
-  <p id="status"></p>
-</div>
+  <div class="details">
 
-<div class="instructions">
-  <b>How to pay:</b>
-  <ol>
-    <li>Copy the UPI ID above.</li>
-    <li>Open Google Pay, PhonePe or Paytm.</li>
-    <li>Select payment using UPI ID.</li>
-    <li>Paste ucas@idfcbank.</li>
-    <li>Enter ₹199 and complete payment.</li>
-    <li>Upload your payment screenshot in the registration form.</li>
-  </ol>
-</div>
+    <b>Pay Registration Fee Using UPI</b>
 
-<p class="note">
-Please verify the recipient name UFChess before completing payment.
-</p>
+    <div class="upi">
+      ucas@idfcbank
+    </div>
+
+    <button class="copy" onclick="copyUPI()">
+      COPY UPI ID
+    </button>
+
+    <p id="status"></p>
+
+  </div>
+
+  <div class="instructions">
+
+    <b>How to complete payment:</b>
+
+    <ol>
+      <li>Copy the UPI ID displayed above.</li>
+      <li>Open Google Pay, PhonePe or Paytm.</li>
+      <li>Select payment using UPI ID.</li>
+      <li>Paste ucas@idfcbank.</li>
+      <li>Verify the recipient name UFChess.</li>
+      <li>Enter ₹199 and complete payment.</li>
+      <li>Upload your payment screenshot in the registration form.</li>
+    </ol>
+
+  </div>
+
+  <p class="note">
+    Please verify the recipient name and amount
+    before completing your payment.
+  </p>
 
 </div>
 
 <script>
 function copyUPI() {
+
   const upi = "ucas@idfcbank";
 
   if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(upi).then(() => {
-      document.getElementById("status").innerText =
-        "UPI ID copied successfully!";
-    }).catch(() => {
-      document.getElementById("status").innerText =
-        "Please copy ucas@idfcbank manually.";
-    });
+
+    navigator.clipboard.writeText(upi)
+      .then(function() {
+        document.getElementById("status").innerText =
+          "UPI ID copied successfully!";
+      })
+      .catch(function() {
+        document.getElementById("status").innerText =
+          "Please copy ucas@idfcbank manually.";
+      });
+
   } else {
+
     document.getElementById("status").innerText =
       "Please copy ucas@idfcbank manually.";
+
   }
 }
 </script>
