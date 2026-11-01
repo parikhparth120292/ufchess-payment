@@ -30,29 +30,31 @@ h1 { color: #183153; }
 }
 .details {
   background: #f1f3f5;
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
-  line-height: 2;
   margin-bottom: 25px;
 }
-.pay {
-  display: block;
+.upi {
+  font-size: 23px;
+  font-weight: bold;
+  margin: 15px 0;
+  color: #183153;
+}
+button {
+  width: 100%;
   background: #168447;
   color: white;
   padding: 17px;
+  border: none;
   border-radius: 9px;
-  text-decoration: none;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: bold;
+  cursor: pointer;
 }
-.copy {
-  display: block;
-  width: 100%;
-  margin-top: 12px;
-  padding: 15px;
-  border: 0;
-  border-radius: 9px;
-  font-size: 16px;
+.instructions {
+  text-align: left;
+  line-height: 1.8;
+  margin-top: 25px;
 }
 .note {
   font-size: 13px;
@@ -61,48 +63,61 @@ h1 { color: #183153; }
 }
 </style>
 </head>
+
 <body>
 <div class="card">
-  <h1>♟ UFChess</h1>
-  <h3>Chess Tournament Registration</h3>
-  <div class="amount">₹199</div>
 
-  <div class="details">
-    <b>UPI ID:</b> ucas@idfcbank<br>
-    <b>Payee:</b> UFChess<br>
-    <b>Purpose:</b> Chess Tournament
-  </div>
+<h1>♟ UFChess</h1>
+<h3>Chess Tournament Registration</h3>
 
-  <a class="pay"
-  href="upi://pay?pa=ucas%40idfcbank&pn=UFChess&am=199&cu=INR&tn=Chess%20Tournament">
-  PAY ₹199 NOW
-  </a>
+<div class="amount">₹199</div>
 
-  <button class="copy" onclick="copyUPI()">
+<div class="details">
+  <b>Pay using any UPI app</b>
+  <div class="upi">ucas@idfcbank</div>
+
+  <button onclick="copyUPI()">
     COPY UPI ID
   </button>
-
   <p id="status"></p>
+</div>
 
-  <p class="note">
-    Tap the payment button to open a supported UPI app.
-    If it doesn't open, copy the UPI ID and pay manually.
-    Please verify the payee before paying.
-  </p>
+<div class="instructions">
+  <b>How to pay:</b>
+  <ol>
+    <li>Copy the UPI ID above.</li>
+    <li>Open Google Pay, PhonePe or Paytm.</li>
+    <li>Select payment using UPI ID.</li>
+    <li>Paste ucas@idfcbank.</li>
+    <li>Enter ₹199 and complete payment.</li>
+    <li>Upload your payment screenshot in the registration form.</li>
+  </ol>
+</div>
+
+<p class="note">
+Please verify the recipient name UFChess before completing payment.
+</p>
+
 </div>
 
 <script>
 function copyUPI() {
-  navigator.clipboard.writeText("ucas@idfcbank")
-    .then(() => {
+  const upi = "ucas@idfcbank";
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(upi).then(() => {
       document.getElementById("status").innerText =
         "UPI ID copied successfully!";
-    })
-    .catch(() => {
+    }).catch(() => {
       document.getElementById("status").innerText =
         "Please copy ucas@idfcbank manually.";
     });
+  } else {
+    document.getElementById("status").innerText =
+      "Please copy ucas@idfcbank manually.";
+  }
 }
 </script>
+
 </body>
 </html>
